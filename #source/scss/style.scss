@@ -1,0 +1,245 @@
+@import 'nullstyle.scss';
+
+
+
+/* ↓ ibg ↓ */
+.ibg {background-position: center;background-size: cover;background-repeat: no-repeat;position: relative;}
+.ibg img {width: 0;height: 0;position: absolute;top: 0;left: 0;opacity: 0;visibility: hidden;}
+/* ↑ ibg ↑ */
+
+body {
+  background-color: #333;
+  color: #000;
+  font-size: 14px;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  &.lock {
+    overflow: hidden;
+  }
+}
+
+.wrapper  {
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+
+  opacity: 0;
+  transition: all 0.8s ease;
+
+  &._loaded {
+    opacity: 1;
+  }
+  &._loaded .header{
+    transform: translate(0, 0);
+    transition: all 0.8s ease 0.8s;
+  }
+  &._loaded .page__pagination{
+    transform: translate(0, -50%);
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.6s ease 0.8s;
+  }
+  &._free .page__pagination {
+    transition: all 0.3s ease;
+    transform: translate(50px, -50%);
+    opacity: 0;
+  }
+}
+
+// ПЕРЕМЕННЫЕ
+$minWidth: 320px;
+$maxWidth: 1920;
+$maxWidthContainer: 856;
+$md1: $maxWidthContainer + 12;
+$md2: 991.98;
+$md3: 767.98;
+$md4: 479.98;
+// ПЕРЕМЕННЫЕ
+
+// ОСНОВНАЯ СЕТКА
+.container {
+  max-width: $maxWidthContainer + px;
+  margin: 0 auto;
+  @media (max-width: $md1+px) {
+    max-width: 970px;
+  }
+  @media (max-width: $md2+px) {
+    max-width: 750px;
+  }
+  @media (max-width: $md3+px) {
+    max-width: none;
+    padding: 0 10px;
+  }
+}
+// ОСНОВНАЯ СЕТКА
+
+// HEADER 
+@import 'header.scss';
+
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  padding: 0 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: all 0.8s ease 0.8s;
+  transform: translate(0, -100%);
+
+  &__menu {
+  }
+}
+.menu {
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+
+  &__link {
+    color: #fff;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    margin: 0 20px 0 0;
+    &._active {
+      color: #7a956b;
+    }
+    @media (max-width: $md3+px) {
+      font-size: 12px;
+      margin: 0 10px 0 0;
+    }
+  }
+}
+
+// HEADER 
+
+
+.page {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+
+		&__wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+		}
+
+		&__screen {
+		}
+}
+.screen {
+  flex: 1 0 100%;
+  position: relative;
+
+		&__content {
+      padding: 100px 100px 25px 25px;
+      position: relative;
+      z-index: 2;
+		}
+
+		&__title {
+      font-size: 50px;
+      color: #fff;
+      margin: 0 0 30px 0;
+      display: inline-block;
+      &_bg {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 15px
+      }
+      @media (max-width: $md3+px) {
+        font-size: 40px;
+      }
+		}
+
+		&__body {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+		}
+
+		&__image {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      img {
+        object-fit: cover;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+      }
+		}
+
+		&__text {
+      font-size: 20px;
+      line-height: 130%;
+      color: #fff;
+      p {
+        &:not(:last-child) {
+          margin: 0 0 20px 0;
+        }
+        @media (max-width: $md3+px) {
+          font-size: 16px;
+        }
+      }
+		}
+}
+
+.page {
+
+  &__pagination {
+    position: absolute;
+    top: 50%;
+    right: 50px;
+    transform: translate(50px, -50%);
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .page__bullet {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin: 10px 0;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    
+    &_active {
+      background-color: #fff;
+    }
+  }
+
+  &__scroll {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  &__drag-scroll {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+  }
+}
+
+
+
+// FOOTER 
+@import 'footer.scss';
+// FOOTER 
